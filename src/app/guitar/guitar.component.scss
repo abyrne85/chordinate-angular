@@ -1,0 +1,25 @@
+.guitar {
+  display: flex;
+
+  &__tuners {
+    padding: 1em;
+    flex-basis: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__tuner {
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
+  &__fretboard {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+  }
+
+}

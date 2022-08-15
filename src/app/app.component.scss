@@ -1,0 +1,15 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #ccc;
+
+  &__container {
+    width: 90%;
+    background: #eee;
+  }
+}

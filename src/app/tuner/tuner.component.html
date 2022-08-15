@@ -1,0 +1,3 @@
+<select class="tuner" [ngModel]="selectedNote" (ngModelChange)="noteSelected($event)">
+  <option *ngFor="let note of notes">{{note}}</option>
+</select>
