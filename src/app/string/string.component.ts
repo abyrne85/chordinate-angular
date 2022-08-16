@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IFret } from '../types';
 
 @Component({
   selector: 'app-string',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StringComponent implements OnInit {
 
+  @Input()frets: IFret[]
   constructor() { }
 
   ngOnInit() {

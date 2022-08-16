@@ -1,0 +1,26 @@
+<div class="controls">
+  <div class="controls__row">
+
+    <div class="controls__panel">
+      <h2 class="controls__heading">Major</h2>
+      <div class="controls__row">
+        <button *ngFor="let key of majorScales"
+                [ngClass]="{'active': key.selected}"
+                (click)="selectKey(key)">{{key.key}}</button>
+      </div>
+    </div>
+    <div class="controls__panel">
+      <h2 class="controls__heading">Minor</h2>
+      <div class="controls__row">
+        <button *ngFor="let key of minorScales"
+                [ngClass]="{'active': key.selected}"
+                (click)="selectKey(key)">{{key.key}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="controls__row controls__chords">
+  <button *ngFor="let chord of chords"
+      [ngClass]="{'active': chord.selected}"
+      (click)="selectChord(chord)">{{chord.root}} {{chord.voice}}</button>
+</div>

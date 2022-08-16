@@ -1,24 +1,7 @@
 import { Constants } from './../constants';
 import { Component, OnInit } from '@angular/core';
-
-interface ITuning {
-  id: number,
-  key: string
-}
-
-interface IString {
-  id: number,
-  key: string,
-  frets?: Array<IFret>
-}
-
-interface IFret {
-  number: number,
-  active: boolean,
-  key: string | null,
-  interval: string | null,
-}
-
+import { ITuning, IString, IChord } from '../types';
+import { ChordinateService } from '../tuning.service';
 @Component({
   selector: 'app-guitar',
   templateUrl: './guitar.component.html',
@@ -26,51 +9,71 @@ interface IFret {
 })
 export class GuitarComponent implements OnInit {
 
-  tuning: Array<ITuning> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key }));
-  strings: Array<IString> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key, frets: [] }));
-  constructor() { }
+  tuning: Array<ITuning> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key })).reverse();
+  strings: Array<IString> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key, frets: Array.apply(null, Array(12)) })).reverse();
+
+  selectedScale: Array<string>;
+
+  constructor(private _chordinateService: ChordinateService) {}
 
   ngOnInit() {
     this._populateFrets();
-    // this._tuneStrings();
+    this._tuneStrings();
+    this._handleKeySelection();
+    this._handleChordSelection();
+  }
+
+  _handleKeySelection(){
+    this._chordinateService.scale$.subscribe((scale) => {
+      const voice = scale.voice === 'major' ? Constants.MAJOR_SCALE : Constants.MINOR_SCALE;
+      this.selectedScale = this._chordinateService.getNotesInScale(scale.key, voice);
+      this._highlightFrets();
+    });
+  }
+
+  _handleChordSelection(){
+    this._chordinateService.chord$.subscribe((chord) => this._highlightChord(chord));
+  }
+
+  _highlightChord(chord: IChord){
+    this.strings.forEach(s => s.frets.forEach(f => {
+      f.inChord = false;
+      f.inChord = chord.triad.includes(f.key)
+    }));
+  }
+
+  _highlightFrets(){
+    this.strings.forEach(s => s.frets.forEach(f => {
+      f.inScale = false;
+      f.inScale = this.selectedScale.includes(f.key)
+    }));
   }
 
   _populateFrets() {
-    console.log('popukate frets')
-    Array(12).map((_, index) => console.log(index))
     this.strings = this.strings.map(string => ({
       ...string,
-      frets: new Array(12).map((_, index) => {
-        return {
-          number: index,
-          active: false,
-          key: null,
-          interval: null
-        }
-      })
+      frets: string.frets.map((_, index) => ({
+        number: index,
+        key: null,
+        interval: null
+      }))
     }))
-    console.log(this.strings);
   }
 
-  tuneString(string: IString, tuning: ITuning) {
-    let orderedNotes = this._orderNotesFromRoot(tuning.key);
+  stringTuned(evt, index){
+    this.tuning[index].key = evt;
+    this._tuneStrings();
+    this._highlightFrets();
+  }
+
+  _tuneString(string: IString, tuning: ITuning) {
+    let orderedNotes = this._chordinateService.orderNotesFromRoot(tuning.key);
     orderedNotes.forEach((note, index) => string.frets[index].key = note);
-    console.log(string);
     return string;
   }
 
   _tuneStrings() {
-    this.strings = this.strings.map((string, index) => this.tuneString(string, this.tuning[index]));
-  }
-
-  _getNotesInScale(key, scale) {
-    const notesOrderedFromRoot = this._orderNotesFromRoot(key)
-    return scale.map(interval => notesOrderedFromRoot[interval])
-  }
-
-  _orderNotesFromRoot(key) {
-    const keyIndex = Constants.ALL_NOTES.indexOf(key)
-    return [...Constants.ALL_NOTES.slice(keyIndex, Constants.ALL_NOTES.length), ...Constants.ALL_NOTES.slice(0, keyIndex)]
+    this.strings = this.strings.map((string, index) => this._tuneString(string, this.tuning[index]));
   }
 
 }

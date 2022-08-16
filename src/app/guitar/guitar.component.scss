@@ -1,25 +1,37 @@
+:host { display: block; }
+
 .guitar {
   display: flex;
+  height: 300px;
 
   &__tuners {
-    padding: 1em;
+    padding: 1em 0em 1em 1em;
     flex-basis: 5%;
     display: flex;
     flex-direction: column;
-  }
-
-  &__tuner {
-    &:not(:last-child) {
-      margin-bottom: 1em;
-    }
+    justify-content: space-around;
   }
 
   &__fretboard {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+
     padding-top: 1em;
     padding-bottom: 1em;
-
+    flex: 1;
   }
+
+  &__string{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  app-string{
+    width: 100%;
+  }
+
 
 }

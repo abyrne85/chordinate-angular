@@ -1,12 +1,12 @@
 <div class="guitar">
   <div class="guitar__tuners">
     <div *ngFor="let note of tuning; let i = index" class="guitar__tuner">
-      <app-tuner [selectedNote]="note.key" (noteSelected)="tuneString($event, note.id)"></app-tuner>
+      <app-tuner [selectedNote]="note.key" (onNoteSelected)="stringTuned($event, i)"></app-tuner>
     </div>
   </div>
   <div class="guitar__fretboard">
-    <div *ngFor="let string of strings">
-      {{string | json}}
+    <div class="guitar__string" *ngFor="let string of strings">
+      <app-string [frets]="string.frets"></app-string>
     </div>
   </div>
 </div>

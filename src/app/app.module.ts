@@ -8,13 +8,15 @@ import { StringComponent } from './string/string.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { ControlsComponent } from './controls/controls.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GuitarComponent,
     TunerComponent,
-    StringComponent
+    StringComponent,
+    ControlsComponent
   ],
   imports: [
     BrowserModule,

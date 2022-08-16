@@ -1,0 +1,30 @@
+:host { display: block; }
+
+.string{
+  display: flex;
+  &__fret{
+    display: inline-block;
+    flex: 1;
+    text-align: center;
+    margin: 0em .2em;
+    padding: .2em 0em;
+
+    &:first-child{
+      flex: 0.5;
+    }
+
+
+    &:not(:last-child){
+      border-right: 1px solid #333;
+    }
+    &--inScale{
+      background: #555;
+      color: white;
+    }
+
+    &--inChord{
+      background: green;
+      color: white;
+    }
+  }
+}

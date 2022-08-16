@@ -1,0 +1,38 @@
+.controls{
+  display: flex;
+
+  justify-content: space-between;
+
+  &__panel{
+    flex: 1;
+    &:first-child{
+      margin-right: 2em;
+    }
+  }
+
+  &__row{
+    display: flex;
+    flex: 1;
+
+    button{
+      flex: 1;
+      height: 40px;
+
+      &:not(:first-child){
+        margin-left: .3em;
+      }
+    }
+    button.active{
+      background: #333;
+      color: white;
+    }
+  }
+
+  &__heading{
+    margin-bottom: .2em;
+  }
+
+  &__chords{
+    margin-top: 1em;
+  }
+}

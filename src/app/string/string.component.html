@@ -1,1 +1,7 @@
-<p>string works!</p>
+<div class="string">
+  <div class="string__fret"
+       *ngFor="let fret of frets"
+       [ngClass]="{'string__fret--inScale' : fret.inScale, 'string__fret--inChord' : fret.inChord}">
+    {{fret.key}}
+  </div>
+</div>

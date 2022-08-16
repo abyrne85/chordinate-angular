@@ -10,6 +10,11 @@
 
   &__container {
     width: 90%;
-    background: #eee;
+    &--guitar{
+      background: #eee;
+    }
+    &--controls{
+      margin-top: 1em;
+    }
   }
 }
