@@ -22,8 +22,8 @@ export class ChordinateService {
     this.chord$ = this.chordSubject.asObservable();
   }
 
-  setKey(key){
-    this.scaleSubject.next(key);
+  setKey(scale: IScale){
+    this.scaleSubject.next(scale);
   }
 
   getNotesInScale(key: string, scale: number[]) {
@@ -37,24 +37,25 @@ export class ChordinateService {
   }
 
   getChords(key: IScale){
-    const voice = this._getVoice(key.voice);
-    const intervals = this._getVoice(key.voice);
+    const voice = this._getScaleFromVoice(key.voice);
+    const intervals = key.voice === 'major' ? Constants.MAJOR_INTERVALS : Constants.MINOR_INTERVALS;
     const notesInScale = this.getNotesInScale(key.key, voice);
     return notesInScale.map((note, i) => ({root: note, voice: intervals[i]}));
   }
 
   setChord(chord: IChord){
-    const voice = this._getVoice(chord.voice);
+    const voice = this._getScaleFromVoice(chord.voice);
     const notesInScale = this.getNotesInScale(chord.root, voice);
     chord.triad = [notesInScale[0], notesInScale[2], notesInScale[4]];
     this.chordSubject.next(chord);
   }
 
-	_getVoice(voice: string){
+	_getScaleFromVoice(voice: string): number[]{
 		switch (voice) {
 			case 'major' : return Constants.MAJOR_SCALE;
 			case 'minor' : return Constants.MINOR_SCALE;
 			case 'diminished' : return Constants.DIMINISHED_SCALE;
+      default: return Constants.MAJOR_SCALE;
 		}
 	}
 

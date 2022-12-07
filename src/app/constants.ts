@@ -5,8 +5,8 @@ export const Constants = {
   DIMINISHED_SCALE: [0, 1, 3, 5, 6, 8, 10],
   STANDARD_TUNING: ['E', 'A', 'D', 'G', 'B', 'E'],
 
-  MAJOR_INTERVALS: ['major', 'minor', 'minor', 'major', 'major', 'minor', 'dim'],
-  MINOR_INTERVALS: ['minor', 'dim', 'major', 'minor', 'minor', 'major', 'major'],
+  MAJOR_INTERVALS: ['major', 'minor', 'minor', 'major', 'major', 'minor', 'diminished'],
+  MINOR_INTERVALS: ['minor', 'diminished', 'major', 'minor', 'minor', 'major', 'major'],
 
 
 }

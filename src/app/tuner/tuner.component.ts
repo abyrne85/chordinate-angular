@@ -8,14 +8,14 @@ import { Constants } from '../constants';
 })
 export class TunerComponent {
 
-  @Input() selectedNote: string;
+  @Input() selectedNote: string | undefined;
   @Output() onNoteSelected = new EventEmitter();
 
   notes: Array<string> = Constants.ALL_NOTES;
 
   constructor() { }
 
-  noteSelected(evt) {
+  noteSelected(evt: string) {
     this.onNoteSelected.emit(evt);
   }
 

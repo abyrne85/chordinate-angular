@@ -10,9 +10,9 @@ import { ChordinateService } from '../tuning.service';
 })
 export class ControlsComponent implements OnInit {
 
-  majorScales: IScale[];
-  minorScales: IScale[];
-  chords: IChord[];
+  majorScales!: IScale[];
+  minorScales!: IScale[];
+  chords!: IChord[];
 
   constructor(private _chordinateService: ChordinateService) { }
 

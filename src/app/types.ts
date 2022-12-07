@@ -6,7 +6,7 @@ export interface ITuning {
 export interface IString {
   id: number,
   key: string,
-  frets?: Array<IFret>
+  frets?: Array<IFret> | unknown
 }
 
 export interface IFret {
@@ -26,8 +26,8 @@ export interface IScale {
 
 export interface IChord {
   root: string;
-  interval: number;
-  voice: 'major' | 'minor';
+  voice: string;
+  interval?: number;
   selected?: boolean;
   triad?: string[];
 }

@@ -8,7 +8,7 @@ import { IFret } from '../types';
 })
 export class StringComponent implements OnInit {
 
-  @Input()frets: IFret[]
+  @Input()frets: IFret[] | unknown;
   constructor() { }
 
   ngOnInit() {

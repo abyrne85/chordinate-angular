@@ -6,7 +6,6 @@ import { GuitarComponent } from './guitar/guitar.component';
 import { TunerComponent } from './tuner/tuner.component';
 import { StringComponent } from './string/string.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { ControlsComponent } from './controls/controls.component';
 
@@ -16,12 +15,11 @@ import { ControlsComponent } from './controls/controls.component';
     GuitarComponent,
     TunerComponent,
     StringComponent,
-    ControlsComponent
+    ControlsComponent,
   ],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
-    MatSelectModule,
     FormsModule
   ],
   providers: [],
