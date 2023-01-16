@@ -11,7 +11,7 @@
     border-color: #333;
     border-width: var(--string-width);
     width: 100%;
-    top: 50%;
+    top: calc(50% - var(--string-width));
   }
 
   &__fret{
