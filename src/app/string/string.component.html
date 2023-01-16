@@ -1,7 +1,8 @@
-<div class="string">
+<div class="string" [ngStyle]="{'--string-width': getStringWidth()}">
   <div class="string__fret"
-       *ngFor="let fret of $any(frets)"
-       [ngClass]="{'string__fret--inScale' : fret.inScale, 'string__fret--inChord' : fret.inChord}">
-    {{fret.key}}
+       *ngFor="let fret of $any(string!.frets)">
+    <span class="string__note" [ngClass]="{'string__note--inScale' : fret.inScale, 'string__note--inChord' : fret.inChord}">
+      {{fret.inScale || fret.inChored ? fret.key : ''}}
+    </span>
   </div>
 </div>

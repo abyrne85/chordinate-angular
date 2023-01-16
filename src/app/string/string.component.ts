@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IFret } from '../types';
+import { IFret, IString } from '../types';
 
 @Component({
   selector: 'app-string',
@@ -8,10 +8,16 @@ import { IFret } from '../types';
 })
 export class StringComponent implements OnInit {
 
-  @Input()frets: IFret[] | unknown;
+  @Input()string: IString | undefined;
+  @Input()index: number | undefined;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getStringWidth() {
+    const width = this.index! + 1 <= 4 ? this.index! + 1 : 4;
+    return `${width}px`;
   }
 
 }

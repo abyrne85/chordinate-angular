@@ -1,29 +1,53 @@
 :host { display: block; }
 
-.string{
+.string {
+  position: relative;
   display: flex;
+
+  &::before{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-color: #333;
+    border-width: var(--string-width);
+    width: 100%;
+    top: 50%;
+  }
+
   &__fret{
-    display: inline-block;
     flex: 1;
     text-align: center;
-    margin: 0em .2em;
-    padding: .2em 0em;
+    border-right: 1px solid #333;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:first-child{
       flex: 0.5;
+      border-right: 7px solid #333;
     }
 
-
-    &:not(:last-child){
-      border-right: 1px solid #333;
+    &:last-child{
+      border-right: 7px solid #333;
     }
+
+  }
+
+  &__note{
+
+    display: inline-block;
+    padding: 0.6em;
+    border-radius: 50%;
+    width: 20px;
+    z-index: 1;
     &--inScale{
-      background: #555;
+      background: rgba(0,0,0,0.5);
       color: white;
     }
 
     &--inChord{
-      background: green;
+      background: #207420;
       color: white;
     }
   }

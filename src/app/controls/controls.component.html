@@ -18,9 +18,9 @@
       </div>
     </div>
   </div>
-</div>
-<div class="controls__row controls__chords">
-  <button *ngFor="let chord of chords"
-      [ngClass]="{'active': chord.selected}"
-      (click)="selectChord(chord)">{{chord.root}} {{chord.voice}}</button>
+  <div class="controls__row controls__chords">
+    <button *ngFor="let chord of chords"
+        [ngClass]="{'active': chord.selected}"
+        (click)="selectChord(chord)">{{chord.root}} {{chord.voice}}</button>
+  </div>
 </div>

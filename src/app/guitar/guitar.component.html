@@ -5,8 +5,8 @@
     </div>
   </div>
   <div class="guitar__fretboard">
-    <div class="guitar__string" *ngFor="let string of strings">
-      <app-string [frets]="string.frets"></app-string>
+    <div class="guitar__string" *ngFor="let string of strings; let i = index">
+      <app-string [string]="string" [index]="i"></app-string>
     </div>
   </div>
 </div>

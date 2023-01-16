@@ -13,7 +13,7 @@ export class GuitarComponent implements OnInit {
   strings: Array<IString> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key, frets: Array.apply(null, Array(12)) })).reverse();
 
   selectedScale!: Array<string>;
-  selectedChord: IChord | null | undefined;
+  selectedChord: IChord | undefined;
 
   constructor(private _chordinateService: ChordinateService) {}
 
@@ -28,7 +28,7 @@ export class GuitarComponent implements OnInit {
     this._chordinateService.scale$.subscribe((scale) => {
       const voice = scale.voice === 'major' ? Constants.MAJOR_SCALE : Constants.MINOR_SCALE;
       this.selectedScale = this._chordinateService.getNotesInScale(scale.key, voice);
-      this.selectedChord = null;
+      this.selectedChord = undefined;
       this._highlightFrets();
       this.selectedChord && this._highlightChord(this.selectedChord);
     });
@@ -42,7 +42,7 @@ export class GuitarComponent implements OnInit {
     this.selectedChord = chord;
     this.strings.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
-      f.inChord = chord.triad!.includes(f.key as string);
+      f.inChord =  this.selectedChord!.triad!.includes(f.key as string);
     }));
   }
 
@@ -69,6 +69,7 @@ export class GuitarComponent implements OnInit {
     this.strings[index].key = evt;
     this._tuneStrings();
     this._highlightFrets();
+    this._highlightChord(this.selectedChord!);
   }
 
   _tuneStrings() {
