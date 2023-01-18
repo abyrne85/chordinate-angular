@@ -9,19 +9,29 @@ import { ChordinateService } from '../tuning.service';
 })
 export class GuitarComponent implements OnInit {
 
-  tuning: Array<ITuning> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key })).reverse();
-  strings: Array<IString> = Constants.STANDARD_TUNING.map((key, id) => ({ id, key, frets: Array.apply(null, Array(12)) })).reverse();
+  tuning: Array<ITuning> | undefined;
+  strings: Array<IString> | undefined;
 
   selectedScale!: Array<string>;
   selectedChord: IChord | undefined;
 
+  selectedTuningPreset: string[] | undefined;
+
+  tuningPresets = Constants.TUNINGS;
   constructor(private _chordinateService: ChordinateService) {}
 
   ngOnInit() {
-    this._populateFrets();
-    this._tuneStrings();
+    this.selectTuningPreset();
     this._handleKeySelection();
     this._handleChordSelection();
+  }
+
+  selectTuningPreset(tuning?: string[]){
+    this.selectedTuningPreset = tuning || Constants.TUNINGS.Standard;
+    this.tuning = this.selectedTuningPreset.map((key, id) => ({ id, key })).reverse();
+    this.strings = this.selectedTuningPreset.map((key, id) => ({ id, key, frets: Array.apply(null, Array(12)) })).reverse();
+    this._populateFrets();
+    this._tuneStrings();
   }
 
   _handleKeySelection(){
@@ -40,14 +50,14 @@ export class GuitarComponent implements OnInit {
 
   _highlightChord(chord: IChord){
     this.selectedChord = chord;
-    this.strings.forEach(s => (s.frets as IFret[]).forEach(f => {
+    this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
-      f.inChord =  this.selectedChord!.triad!.includes(f.key as string);
+      f.inChord =  this.selectedChord?.triad!.includes(f.key as string);
     }));
   }
 
   _highlightFrets(){
-    this.strings.forEach(s => (s.frets as IFret[]).forEach(f => {
+    this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
       f.inScale = false;
       f.inScale = this.selectedScale.includes(f.key as string)
@@ -55,7 +65,7 @@ export class GuitarComponent implements OnInit {
   }
 
   _populateFrets() {
-    this.strings = this.strings.map(string => ({
+    this.strings = this.strings!.map(string => ({
       ...string,
       frets: (string.frets as IFret[]).map((_, index) => ({
         number: index,
@@ -66,14 +76,14 @@ export class GuitarComponent implements OnInit {
   }
 
   stringTuned(evt: string, index: number){
-    this.strings[index].key = evt;
+    this.strings![index].key = evt;
     this._tuneStrings();
     this._highlightFrets();
     this._highlightChord(this.selectedChord!);
   }
 
   _tuneStrings() {
-    this.strings = this.strings.map((string, index) => this._tuneString(string));
+    this.strings = this.strings!.map((string, index) => this._tuneString(string));
   }
 
   _tuneString(string: IString) {

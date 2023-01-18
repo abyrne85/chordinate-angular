@@ -1,12 +1,22 @@
+<select class="guitar__tuning-selection"
+        [(ngModel)]="selectedTuningPreset"
+        (ngModelChange)="selectTuningPreset($event)">
+  <option *ngFor="let preset of tuningPresets | keyvalue"
+          [ngValue]="preset.value">{{preset.key}}</option>
+</select>
 <div class="guitar">
   <div class="guitar__tuners">
-    <div *ngFor="let note of tuning; let i = index" class="guitar__tuner">
-      <app-tuner [selectedNote]="note.key" (onNoteSelected)="stringTuned($event, i)"></app-tuner>
+    <div *ngFor="let note of tuning; let i = index"
+         class="guitar__tuner">
+      <app-tuner [selectedNote]="note.key"
+                 (onNoteSelected)="stringTuned($event, i)"></app-tuner>
     </div>
   </div>
   <div class="guitar__fretboard">
-    <div class="guitar__string" *ngFor="let string of strings; let i = index">
-      <app-string [string]="string" [index]="i"></app-string>
+    <div class="guitar__string"
+         *ngFor="let string of strings; let i = index">
+      <app-string [string]="string"
+                  [index]="i"></app-string>
     </div>
   </div>
 </div>
