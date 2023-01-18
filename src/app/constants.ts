@@ -11,5 +11,6 @@ export const Constants = {
   TUNINGS : {
     Standard : ['E', 'A', 'D', 'G', 'B', 'E'],
     DADGAD : ['D', 'A', 'D', 'G', 'A', 'D'],
+    OpenD: ['D', 'A', 'D', 'F#', 'A', 'D'],
   }
 }

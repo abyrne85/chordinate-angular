@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Constants } from './../constants';
 import { IChord, IScale } from '../types';
-import { ChordinateService } from '../tuning.service';
+import { ChordinateService } from '../chordinate.service';
 
 @Component({
   selector: 'app-controls',

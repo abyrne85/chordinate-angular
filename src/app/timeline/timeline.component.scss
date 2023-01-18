@@ -1,0 +1,17 @@
+.timeline{
+  background: #fff;
+  padding: 1em;
+}
+.timeline{
+  &__row{
+    margin-top: 1em;
+    display: flex;
+    gap: 1em
+  }
+  &__chord{
+    background: green;
+    padding: 1em;
+    color: white;
+    cursor: pointer;
+  }
+}

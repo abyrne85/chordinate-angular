@@ -8,6 +8,7 @@ import { StringComponent } from './string/string.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ControlsComponent } from './controls/controls.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ControlsComponent } from './controls/controls.component';
     TunerComponent,
     StringComponent,
     ControlsComponent,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,

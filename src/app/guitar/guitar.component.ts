@@ -1,7 +1,7 @@
 import { Constants } from './../constants';
 import { Component, OnInit } from '@angular/core';
 import { ITuning, IString, IChord, IFret } from '../types';
-import { ChordinateService } from '../tuning.service';
+import { ChordinateService } from '../chordinate.service';
 @Component({
   selector: 'app-guitar',
   templateUrl: './guitar.component.html',

@@ -4,14 +4,15 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
 
   background: #333;
 
   &__container {
     width: 90%;
-    &--controls{
-      margin-top: 2em;
-    }
+  }
+
+  &__container > * {
+    margin-top: 2em;
+    display: block;
   }
 }
