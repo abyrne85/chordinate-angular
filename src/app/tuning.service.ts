@@ -10,9 +10,11 @@ export class ChordinateService {
 
   scale$: Observable<IScale>;
   scaleSubject: Subject<IScale>;
+  selectedScale: IScale | undefined;
 
   chord$: Observable<IChord>;
   chordSubject: Subject<IChord>;
+  selectedChord: IChord | undefined;
 
   constructor() {
     this.scaleSubject = new Subject<IScale>();
@@ -24,6 +26,7 @@ export class ChordinateService {
 
   setKey(scale: IScale){
     this.scaleSubject.next(scale);
+    this.selectedScale = scale;
   }
 
   getNotesInScale(key: string, scale: number[]) {
@@ -48,6 +51,7 @@ export class ChordinateService {
     const notesInScale = this.getNotesInScale(chord.root, voice);
     chord.triad = [notesInScale[0], notesInScale[2], notesInScale[4]];
     this.chordSubject.next(chord);
+    this.selectedChord = chord;
   }
 
 	_getScaleFromVoice(voice: string): number[]{

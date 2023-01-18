@@ -32,6 +32,9 @@ export class GuitarComponent implements OnInit {
     this.strings = this.selectedTuningPreset.map((key, id) => ({ id, key, frets: Array.apply(null, Array(12)) })).reverse();
     this._populateFrets();
     this._tuneStrings();
+
+    this._chordinateService.selectedScale && this._chordinateService.setKey(this._chordinateService.selectedScale);
+    this._chordinateService.selectedChord && this._chordinateService.setChord(this._chordinateService.selectedChord);
   }
 
   _handleKeySelection(){
@@ -60,7 +63,7 @@ export class GuitarComponent implements OnInit {
     this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
       f.inScale = false;
-      f.inScale = this.selectedScale.includes(f.key as string)
+      f.inScale = this.selectedScale?.includes(f.key as string)
     }));
   }
 
