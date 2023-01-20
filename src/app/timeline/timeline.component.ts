@@ -24,4 +24,9 @@ export class TimelineComponent {
     this._chordinateService.setKey(scale);
     this._chordinateService.setChord(chord);
   }
+
+  saveTimeline(){
+    console.log(this.timeline);
+  }
+
 }

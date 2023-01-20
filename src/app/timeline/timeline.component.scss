@@ -4,13 +4,13 @@
 }
 .timeline{
   &__row{
-    margin-top: 1em;
+    margin: 1em 0em;
     display: flex;
     gap: 1em
   }
   &__chord{
     background: green;
-    padding: 1em;
+    padding: 1em ;
     color: white;
     cursor: pointer;
   }

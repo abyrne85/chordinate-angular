@@ -1,10 +1,13 @@
 <div class="timeline">
-  <button [disabled]="isTimelineButtonDisabled()"
-          (click)="addToTimeline()">Add to Timeline</button>
-  <div *ngIf="!!timeline.length" class="timeline__row">
-    <div *ngFor="let t of timeline"
-        class="timeline__chord"
-        (click)="setChord(t.scale, t.chord)">
-      {{t.chord.root}}{{t.chord.voice}}</div>
-  </div>
+	<button [disabled]="isTimelineButtonDisabled()"
+					(click)="addToTimeline()">Add to Timeline</button>
+	<div *ngIf="!!timeline.length"
+			 class="timeline__row">
+		<div *ngFor="let t of timeline"
+				 class="timeline__chord"
+				 (click)="setChord(t.scale, t.chord)">
+			{{t.chord.root}} {{t.chord.voice}}</div>
+	</div>
+	<button *ngIf="!!timeline.length"
+					(click)="saveTimeline()">Save Timeline</button>
 </div>
