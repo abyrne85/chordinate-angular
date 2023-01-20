@@ -16,6 +16,7 @@ export class GuitarComponent implements OnInit {
   selectedChord: IChord | undefined;
 
   selectedTuningPreset: string[] | undefined;
+  fretArray = new Array(12);
 
   tuningPresets = Constants.TUNINGS;
   constructor(private _chordinateService: ChordinateService) {}
@@ -29,7 +30,7 @@ export class GuitarComponent implements OnInit {
   selectTuningPreset(tuning?: string[]){
     this.selectedTuningPreset = tuning || Constants.TUNINGS.Standard;
     this.tuning = this.selectedTuningPreset.map((key, id) => ({ id, key })).reverse();
-    this.strings = this.selectedTuningPreset.map((key, id) => ({ id, key, frets: Array.apply(null, Array(12)) })).reverse();
+    this.strings = this.selectedTuningPreset.map((key, id) => ({ id, key, frets: Array.apply(null, this.fretArray) })).reverse();
     this._populateFrets();
     this._tuneStrings();
 

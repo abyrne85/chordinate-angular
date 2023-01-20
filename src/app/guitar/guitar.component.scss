@@ -34,6 +34,19 @@
     justify-content: center;
   }
 
+  &__fret-markers{
+    display: flex;
+    margin-left: 7.5%;
+    margin-top: 0.5em;
+  }
+
+  &__fret-marker{
+    color: white;
+    font-weight: bold;
+    flex: 1;
+
+  }
+
   app-string{
     width: 100%;
   }
