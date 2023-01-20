@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "choordinate-85bbf": {
+      "hosting": {
+        "chordinate": [
+          "choordinate-85bbf"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "choordinate-85bbf"
+  }
+}
