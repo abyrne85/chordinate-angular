@@ -16,14 +16,19 @@
     display: flex;
     flex: 1;
 
-    button{
+    li{
       flex: 1;
       height: 40px;
-
       &:not(:first-child){
         margin-left: .3em;
       }
     }
+
+    button{
+      height: 100%;
+      width: 100%;
+    }
+
     button.active{
       background: #333;
       color: white;

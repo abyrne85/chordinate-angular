@@ -25,6 +25,7 @@
     justify-content: space-around;
 
     flex: 1;
+    position: relative;
   }
 
   &__string{
@@ -35,16 +36,21 @@
   }
 
   &__fret-markers{
+    position: absolute;
     display: flex;
-    margin-left: 7.5%;
-    margin-top: 0.5em;
+    bottom: -20px;
+    right: 0;
+    width: 100%;
   }
 
   &__fret-marker{
     color: white;
     font-weight: bold;
-    flex: 1;
-
+    text-align: center;
+    flex: 2;
+    &:first-child{
+      flex: 1;
+    }
   }
 
   app-string{

@@ -18,8 +18,8 @@
       <app-string [string]="string"
                   [index]="i"></app-string>
     </div>
+    <div class="guitar__fret-markers">
+      <span *ngFor="let fret of fretArray; let i = index" class="guitar__fret-marker">{{i}}</span>
+    </div>
   </div>
-</div>
-<div class="guitar__fret-markers">
-  <span *ngFor="let fret of fretArray; let i = index" class="guitar__fret-marker">{{i}}</span>
 </div>
