@@ -12,6 +12,7 @@
     border-width: var(--string-width);
     width: 100%;
     top: calc(50% - var(--string-width));
+    box-sizing: border-box;
   }
 
   &__fret{
