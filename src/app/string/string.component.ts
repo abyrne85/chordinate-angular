@@ -6,18 +6,23 @@ import { IFret, IString } from '../types';
   templateUrl: './string.component.html',
   styleUrls: ['./string.component.scss']
 })
-export class StringComponent implements OnInit {
+export class StringComponent {
 
   @Input()string: IString | undefined;
   @Input()index: number | undefined;
   constructor() { }
 
-  ngOnInit() {
-  }
-
   getStringWidth() {
     const width = this.index! + 1 <= 4 ? this.index! + 1 : 4;
     return `${width}px`;
+  }
+
+  getIntervalClass(fret: IFret) {
+    return {
+      'string__note--root' : fret.interval === 1,
+      'string__note--inScale' : fret.inScale,
+      'string__note--inChord' : fret.inChord,
+    };
   }
 
 }

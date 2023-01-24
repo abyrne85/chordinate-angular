@@ -13,6 +13,7 @@ export class ControlsComponent implements OnInit {
   majorScales!: IScale[];
   minorScales!: IScale[];
   chords!: IChord[];
+  isChordSelected!: boolean;
 
   constructor(private _chordinateService: ChordinateService) { }
 
@@ -40,6 +41,7 @@ export class ControlsComponent implements OnInit {
     this.chords.forEach(c => c.selected = false);
     chord.selected = true;
     this._chordinateService.setChord(chord);
+    this.isChordSelected = true;
   }
 
 

@@ -1,6 +1,5 @@
 <div class="controls">
   <div class="controls__row">
-
     <div class="controls__panel">
       <h2 class="controls__heading">Major</h2>
       <ul class="controls__row">
@@ -20,10 +19,15 @@
       </ul>
     </div>
   </div>
-  <ul class="controls__row controls__chords">
+  <ul class="controls__row">
     <li *ngFor="let chord of chords">
       <button [ngClass]="{'active': chord.selected}"
               (click)="selectChord(chord)">{{chord.root}} {{chord.voice}}</button>
     </li>
   </ul>
+
+  <div *ngIf="isChordSelected" class="controls__row">
+    <h2>Extensions</h2>
+
+  </div>
 </div>

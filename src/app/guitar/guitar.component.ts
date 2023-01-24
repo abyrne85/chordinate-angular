@@ -56,7 +56,8 @@ export class GuitarComponent implements OnInit {
     this.selectedChord = chord;
     this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
-      f.inChord =  this.selectedChord?.triad!.includes(f.key as string);
+      f.inChord = this.selectedChord?.triad!.includes(f.key as string);
+      f.interval = this.selectedChord!.intervals!.indexOf(f.key as string) + 1;
     }));
   }
 
@@ -64,6 +65,7 @@ export class GuitarComponent implements OnInit {
     this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
       f.inScale = false;
+      f.interval = null;
       f.inScale = this.selectedScale?.includes(f.key as string)
     }));
   }

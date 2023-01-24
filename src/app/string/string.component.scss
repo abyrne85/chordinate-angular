@@ -43,14 +43,18 @@
     width: 20px;
     z-index: 1;
     font-weight: bold;
+    color: white;
+
+
     &--inScale{
       background: rgba(0,0,0,0.5);
-      color: white;
     }
-
     &--inChord{
-      background: #207420;
-      color: white;
+      background: #00d700;
+      color: black;
+    }
+    &--root{
+      background: #4f84ff;
     }
   }
 }

@@ -50,6 +50,7 @@ export class ChordinateService {
     const voice = this._getScaleFromVoice(chord.voice);
     const notesInScale = this.getNotesInScale(chord.root, voice);
     chord.triad = [notesInScale[0], notesInScale[2], notesInScale[4]];
+    chord.intervals = notesInScale;
     this.chordSubject.next(chord);
     this.selectedChord = chord;
   }

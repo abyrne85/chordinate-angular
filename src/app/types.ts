@@ -12,10 +12,9 @@ export interface IString {
 export interface IFret {
   number: number,
   key: string | null,
-  interval: string | null,
+  interval: number | null,
   inScale?: boolean,
-  inChord?: boolean,
-
+  inChord?: boolean
 }
 
 export interface IScale {
@@ -27,7 +26,7 @@ export interface IScale {
 export interface IChord {
   root: string;
   voice: string;
-  interval?: number;
+  intervals?: string[];
   selected?: boolean;
   triad?: string[];
 }
