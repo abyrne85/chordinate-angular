@@ -38,6 +38,10 @@ export class TimelineComponent implements OnInit {
     this._chordinateService.setChord(chord);
   }
 
+  clearTimeline(){
+    this.timeline = [];
+  }
+
   saveTimeline(){
     console.log(this.timeline);
   }

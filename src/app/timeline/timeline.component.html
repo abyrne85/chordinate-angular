@@ -8,6 +8,11 @@
 				 (click)="setChord(t.scale, t.chord)">
 			{{t.chord.root}} {{t.chord.voice}}</div>
 	</div>
-	<button *ngIf="!!timeline.length"
-					(click)="saveTimeline()">Save Timeline</button>
+
+  <div class="timeline__row">
+    <button *ngIf="!!timeline.length"
+    (click)="saveTimeline()">Save Timeline</button>
+    <button *ngIf="!!timeline.length"
+    (click)="clearTimeline()">Clear Timeline</button>
+  </div>
 </div>

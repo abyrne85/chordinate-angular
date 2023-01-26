@@ -1,6 +1,6 @@
 import { Constants } from './../constants';
 import { Component, OnInit } from '@angular/core';
-import { ITuning, IString, IChord, IFret } from '../types';
+import { ITuning, IString, IChord, IFret, IExtensions } from '../types';
 import { ChordinateService } from '../chordinate.service';
 @Component({
   selector: 'app-guitar',
@@ -25,6 +25,7 @@ export class GuitarComponent implements OnInit {
     this.selectTuningPreset();
     this._handleKeySelection();
     this._handleChordSelection();
+    this._handleExtensionSelection();
   }
 
   selectTuningPreset(tuning?: string[]){
@@ -36,6 +37,8 @@ export class GuitarComponent implements OnInit {
 
     this._chordinateService.selectedScale && this._chordinateService.setKey(this._chordinateService.selectedScale);
     this._chordinateService.selectedChord && this._chordinateService.setChord(this._chordinateService.selectedChord);
+    this._chordinateService.selectedExtensions && this._chordinateService.setExtensions(this._chordinateService.selectedExtensions);
+
   }
 
   _handleKeySelection(){
@@ -52,6 +55,19 @@ export class GuitarComponent implements OnInit {
     this._chordinateService.chord$.subscribe((chord) => this._highlightChord(chord));
   }
 
+  _handleExtensionSelection(){
+    this._chordinateService.extensions$.subscribe((extensions) => this._highlightExtension(extensions));
+  }
+
+  _highlightExtension(extensions: IExtensions){
+    this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
+      f.extensions = {
+        seventh : f.interval === 7 && extensions.seventh,
+        ninth : f.interval === 2 && extensions.ninth
+      };
+    }));
+  }
+
   _highlightChord(chord: IChord){
     this.selectedChord = chord;
     this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
@@ -65,7 +81,7 @@ export class GuitarComponent implements OnInit {
     this.strings!.forEach(s => (s.frets as IFret[]).forEach(f => {
       f.inChord = false;
       f.inScale = false;
-      f.interval = null;
+      f.interval = undefined;
       f.inScale = this.selectedScale?.includes(f.key as string)
     }));
   }

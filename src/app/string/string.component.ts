@@ -22,6 +22,8 @@ export class StringComponent {
       'string__note--root' : fret.interval === 1,
       'string__note--inScale' : fret.inScale,
       'string__note--inChord' : fret.inChord,
+      'string__note--seventh': fret.extensions?.seventh,
+      'string__note--ninth': fret.extensions?.ninth
     };
   }
 

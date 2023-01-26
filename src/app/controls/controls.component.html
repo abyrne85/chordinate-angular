@@ -26,8 +26,18 @@
     </li>
   </ul>
 
-  <div *ngIf="isChordSelected" class="controls__row">
-    <h2>Extensions</h2>
+  <div *ngIf="isChordSelected">
+    <h2 class="controls__heading">Extensions</h2>
+    <div class="controls__row">
+      <label class="controls__checkbox">
+        <input type="checkbox" [(ngModel)]="showSeventh" (ngModelChange)="showExtension()">7th
+      </label>
+      <label class="controls__checkbox">
+        <input type="checkbox" [(ngModel)]="showNinth" (ngModelChange)="showExtension()">9th
+      </label>
+
+    </div>
+
 
   </div>
 </div>

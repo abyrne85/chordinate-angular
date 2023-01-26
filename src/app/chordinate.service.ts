@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Constants } from './constants';
-import { IChord, IScale } from './types';
+import { IChord, IExtensions, IScale } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,19 @@ export class ChordinateService {
   chordSubject: Subject<IChord>;
   selectedChord: IChord | undefined;
 
+  extensions$: Observable<IExtensions>;
+  extensionsSubject: Subject<IExtensions>;
+  selectedExtensions: IExtensions | undefined;
+
   constructor() {
     this.scaleSubject = new Subject<IScale>();
     this.scale$ = this.scaleSubject.asObservable();
 
     this.chordSubject = new Subject<IChord>();
     this.chord$ = this.chordSubject.asObservable();
+
+    this.extensionsSubject = new Subject<IExtensions>;
+    this.extensions$ = this.extensionsSubject.asObservable();
   }
 
   setKey(scale: IScale){
@@ -63,5 +70,10 @@ export class ChordinateService {
       default: return Constants.MAJOR_SCALE;
 		}
 	}
+
+  setExtensions(extensions: IExtensions){
+    this.extensionsSubject.next(extensions);
+    this.selectedExtensions = extensions;
+  }
 
 }

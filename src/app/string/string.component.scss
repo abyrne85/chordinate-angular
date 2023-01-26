@@ -47,7 +47,7 @@
 
 
     &--inScale{
-      background: rgba(0,0,0,0.5);
+      background: #555
     }
     &--inChord{
       background: #00d700;
@@ -56,5 +56,12 @@
     &--root{
       background: #4f84ff;
     }
+    &--seventh{
+      background: hotpink;
+    }
+    &--ninth{
+      background: red;
+    }
+
   }
 }

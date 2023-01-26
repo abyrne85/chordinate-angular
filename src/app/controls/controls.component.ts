@@ -14,6 +14,9 @@ export class ControlsComponent implements OnInit {
   minorScales!: IScale[];
   chords!: IChord[];
   isChordSelected!: boolean;
+  showSeventh: boolean = false;
+  showNinth: boolean = false;
+
 
   constructor(private _chordinateService: ChordinateService) { }
 
@@ -22,28 +25,35 @@ export class ControlsComponent implements OnInit {
   }
 
   _getScales() {
-    this.majorScales = Constants.ALL_NOTES.map(key => ({key, voice: 'major'}));
-    this.minorScales = Constants.ALL_NOTES.map(key => ({key, voice: 'minor'}));
+    this.majorScales = Constants.ALL_NOTES.map(key => ({ key, voice: 'major' }));
+    this.minorScales = Constants.ALL_NOTES.map(key => ({ key, voice: 'minor' }));
   }
 
-  selectKey(key: IScale){
+  selectKey(key: IScale) {
     [...this.majorScales, ...this.minorScales].forEach(s => s.selected = false);
     this._chordinateService.setKey(key);
     key.selected = true;
+    this.isChordSelected = false;
     this._getChords(key);
   }
 
-  _getChords(key: IScale){
+  _getChords(key: IScale) {
     this.chords = this._chordinateService.getChords(key);
   }
 
-  selectChord(chord: IChord){
+  selectChord(chord: IChord) {
     this.chords.forEach(c => c.selected = false);
     chord.selected = true;
     this._chordinateService.setChord(chord);
     this.isChordSelected = true;
   }
 
+  showExtension() {
+    this._chordinateService.setExtensions({
+      seventh: this.showSeventh,
+      ninth: this.showNinth
+    });
+  }
 
 
 }
